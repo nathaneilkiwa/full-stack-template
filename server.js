@@ -7,5 +7,16 @@ require('dotenv').config()
 
 let db,
     dbConnectionString = process.env.DB_SRING,
-    dbName = '',
+    dbName = 'project_new',
     collection 
+
+MongoClient.connect(dbConnectionString)
+    .then(client => {
+        console.log(`Connected to Database`)
+        db = client.db(dbName)
+        collection = db.collection('movies')
+    })
+
+app.listen(process.env.PORT || PORT,()=>{
+    console.log(`server is running on port `)
+})
